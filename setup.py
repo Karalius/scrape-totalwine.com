@@ -5,7 +5,6 @@ from setuptools import find_packages
 setup(
     name='totalwine-scraper',
     version='1.0.0',
-    packages=[''],
     package_dir={'': 'totalwine_scraper'},
     description='This package scrapes totalwine.com website for demanded count of listings and types for wine.',
     author='Kasparas Karalius',
