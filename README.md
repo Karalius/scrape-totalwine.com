@@ -17,10 +17,10 @@ pip install
 
 ## Usage
 ```
-from totalwine_scraper import Scraper
+from totalwine_scraper import scraper
 
-scraper = Scraper(200, ['red', 'white'])
-df = scraper.scrape_items()
+defined_scraper = scraper.Scraper(200, ['red', 'white'])
+df = defined_scraper.scrape_items()
 ```
 
 ## Output as JSON
