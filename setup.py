@@ -16,7 +16,7 @@ setup(
     author_email='',
     url='https://github.com/Karalius/totalwine-scraper',
     license='MIT',
-    packages=find_packages(exclude=('tests*')),
+    packages=find_packages(),
     install_requires=[
         "atomicwrites==1.4.0",
         "attrs==21.2.0",
