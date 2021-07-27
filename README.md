@@ -19,7 +19,7 @@ pip install
 ```
 from totalwine_scraper import Scraper
 
-scraper = Scraper(200, ['red'. 'white'])
+scraper = Scraper(200, ['red', 'white'])
 df = scraper.scrape_items()
 ```
 
