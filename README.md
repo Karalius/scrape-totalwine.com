@@ -8,15 +8,16 @@ This package is ready to scrape totalwine.com for demanded number of listings wi
 
 
 ## Installation
-```
-git clone git@github.com:Karalius/totalwine-scraper.git
+```github
+git clone git@github.com:Karalius/scrape-totalwine.com.git
 pip install -r requirements.txt
-cd totalwine_scraper
-pip install
+cd scrape-totalwine.com
+pip install -e .
+pytest
 ```
 
 ## Usage
-```
+```python
 from totalwine_scraper import scraper
 
 defined_scraper = scraper.Scraper(200, ['red', 'white'])
@@ -27,7 +28,7 @@ df = defined_scraper.scrape_items()
 
 This example shows one listing's scraped information in JSON format.
 
-```
+```json
 output = {
         "title": "14 Hands Chardonnay",
         "year": null,
