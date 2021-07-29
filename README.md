@@ -10,7 +10,6 @@ This package is ready to scrape totalwine.com for demanded number of listings wi
 ## Installation
 ```github
 git clone git@github.com:Karalius/scrape-totalwine.com.git
-pip install -r requirements.txt
 cd scrape-totalwine.com
 pip install -e .
 pytest
