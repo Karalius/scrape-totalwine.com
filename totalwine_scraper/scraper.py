@@ -328,7 +328,6 @@ class Scraper:
             pd.DataFrame: tabular data with all scraped listings and its features.
         """
 
-<<<<<<< HEAD
         (
             titles,
             rating_scores,
@@ -353,10 +352,6 @@ class Scraper:
             stocks_available,
         ) = ([] for _ in range(21))
 
-=======
-        titles, rating_scores, prices, years, img_links, links, winery_directs, descriptions, brands, countries, regions, appelations, wine_types, varietals, styles, tastes, bodies, item_styles, stars_average, reviews_count, stocks_available = ([] for _ in range(21))
-        
->>>>>>> 358c6c40bf4be6c9bd70a9f98588cf7973938c48
         item_types = self.item_types
 
         for wine_type in item_types:
@@ -374,10 +369,6 @@ class Scraper:
                     self.is_winery_direct(item, id, winery_directs)
                     self.get_wine_stock(item, id, stocks_available)
                     self.get_brand(item, id, brands)
-<<<<<<< HEAD
-=======
-                    self.get_categories(item, id, regions, wine_types, varietals, appelations, styles, countries)
->>>>>>> 358c6c40bf4be6c9bd70a9f98588cf7973938c48
                     self.get_wine_style(item, id, item_styles)
                     self.get_wine_taste(item, id, tastes)
                     self.get_wine_body(item, id, bodies)
@@ -434,8 +425,4 @@ class Scraper:
             df (pd.DataFrame): dataframe with the scraped data.
             path (str): location on the device to save created csv.
         """
-<<<<<<< HEAD
         return df.to_csv(os.path.join(path, r"totalwine_data.csv"))
-=======
-        return df.to_csv(os.path.join(path,r'totalwine_data.csv'))
->>>>>>> 358c6c40bf4be6c9bd70a9f98588cf7973938c48
