@@ -333,47 +333,30 @@ class Scraper:
         """
 
         titles, rating_scores, prices, years, img_links, links, winery_directs, descriptions, brands, countries, regions, appelations, wine_types, varietals, styles, tastes, bodies, item_styles, stars_average, reviews_count, stocks_available = ([] for _ in range(21))
-
+        
         item_types = self.item_types
 
         for wine_type in item_types:
-
+            
             for page in range(1, (self.number_of_pages + 1)):
-
                 item = self.get_products(page, wine_type)
-
+                
                 for id in range(self.items_per_page):
-
                     self.get_title(item, id, titles)
-
                     self.get_production_year(item, id, years)
-
                     self.get_price(item, id, prices)
-
                     self.get_star_average(item, id, stars_average)
-
                     self.get_review_count(item, id, reviews_count)
-                    
                     self.get_rating_score(item, id, rating_scores)
-
                     self.is_winery_direct(item, id, winery_directs)
-
                     self.get_wine_stock(item, id, stocks_available)
-
                     self.get_brand(item, id, brands)
-
                     self.get_categories(item, id, regions, wine_types, varietals, appelations, styles, countries)
-
                     self.get_wine_style(item, id, item_styles)
-
                     self.get_wine_taste(item, id, tastes)
-
                     self.get_wine_body(item, id, bodies)
-
                     self.get_description(item, id, descriptions)
-
                     self.get_img_link(item, id, img_links)
-
                     self.get_item_link(item, id, links)
                 
                 time.sleep(np.random.uniform(2, 7))
