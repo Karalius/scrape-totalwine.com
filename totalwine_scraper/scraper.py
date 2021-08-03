@@ -11,7 +11,7 @@ from typing import Dict, Any, Union
 
 
 class Scraper:
-    
+
     def __init__(self, number_of_items: int, item_types: list) -> None:
         """
         This scrapes totalwine.com for wine listings
@@ -124,295 +124,245 @@ class Scraper:
             print("Corrupted json!")
 
     @staticmethod
-    def get_brand(item: Dict[str, Any], id: int, brands: list) -> list:
+    def get_brand(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            brands.extend([item[id]["brand"]["name"]])
+            brand = item[id]["brand"]["name"]
         except:
-            brands.extend([None])
-        return brands
+            brand = None
+        return brand
 
     @staticmethod
-    def get_star_average(item: Dict[str, Any], id: int, stars_average: list) -> list:
+    def get_star_average(item: Dict[str, Any], id: int) -> Union[float, None]:
         try:
-            stars_average.extend([item[id]["customerAverageRating"]])
+            stars = item[id]["customerAverageRating"]
         except:
-            stars_average.extend([None])
-        return stars_average
+            stars = None
+        return stars
 
     @staticmethod
-    def get_review_count(item: Dict[str, Any], id: int, reviews_count: list) -> list:
+    def get_review_count(item: Dict[str, Any], id: int) -> Union[int, None]:
         try:
-            reviews_count.extend([item[id]["customerReviewsCount"]])
+            review_count = item[id]["customerReviewsCount"]
         except:
-            reviews_count.extend([None])
-        return reviews_count
+            review_count = None
+        return review_count
 
     @staticmethod
-    def get_title(item: Dict[str, Any], id: int, titles: list) -> list:
+    def get_title(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            titles.extend([item[id]["name"]])
+            title = item[id]["name"]
         except:
-            titles.extend([None])
-        return titles
+            title = None
+        return title
 
     @staticmethod
-    def get_production_year(item: Dict[str, Any], id: int, years: list) -> list:
+    def get_production_year(item: Dict[str, Any], id: int) -> Union[float, None]:
         try:
             extract_year = item[id]["name"].split(", ")[1]
-            years.extend([int(extract_year)])
+            year = int(extract_year)
         except:
-            years.extend([None])
-        return years
+            year = None
+        return year
 
     @staticmethod
-    def get_rating_score(item: Dict[str, Any], id: int, rating_scores: list) -> list:
+    def get_rating_score(item: Dict[str, Any], id: int) -> Union[int, None]:
         try:
             rating = item[id]["rating"]
-            if rating != 0:
-                rating_scores.extend([rating])
-            else:
-                rating_scores.extend([None])
         except:
-            rating_scores.extend([None])
-        return rating_scores
+            rating = None
+        return rating
 
     @staticmethod
-    def get_description(item: Dict[str, Any], id: int, descriptions: list) -> list:
+    def get_description(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            comment = [item[id]["review"]]
-            if len(comment) != 0:
-                descriptions.extend(comment)
-            else:
-                descriptions.extend([None])
+            description = item[id]["review"]
         except:
-            descriptions.extend([None])
-        return descriptions
+            description = None
+        return description
 
     @staticmethod
-    def is_winery_direct(item: Dict[str, Any], id: int, winery_directs: list) -> list:
+    def is_winery_direct(item: Dict[str, Any], id: int) -> Union[int, None]:
         try:
             winery_direct = item[id]["directType"]
             if winery_direct == "Winery Direct":
-                winery_directs.extend([1])
+                winery = 1
             else:
-                winery_directs.extend([0])
+                winery = 0
         except:
-            winery_directs.extend([0])
-        return winery_directs
+            winery = 0
+        return winery
 
     @staticmethod
-    def get_img_link(item: Dict[str, Any], id: int, img_links: list) -> list:
+    def get_img_link(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            img_links.extend([item[id]["images"][0]["url"]])
+            img = item[id]["images"][0]["url"]
         except:
-            img_links.extend([None])
-        return img_links
+            img = None
+        return img
 
     @staticmethod
-    def get_item_link(item: Dict[str, Any], id: int, links: list) -> list:
+    def get_item_link(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            full_link = "https://www.totalwine.com" + item[id]["productUrl"]
-            links.extend([full_link])
+            link = "https://www.totalwine.com" + item[id]["productUrl"]
         except:
-            links.extend([None])
-        return links
+            link = None
+        return link
 
     @staticmethod
-    def get_price(item: Dict[str, Any], id: int, prices: list) -> list:
+    def get_price(item: Dict[str, Any], id: int) -> Union[float, None]:
         try:
-            prices.extend([item[id]["price"][0]["price"]])
+            price = item[id]["price"][0]["price"]
         except:
-            prices.extend([None])
-        return prices
+            price = None
+        return price
 
     @staticmethod
-    def get_wine_style(item: Dict[str, Any], id: int, item_styles: list) -> list:
+    def get_wine_style(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            item_styles.extend([item[id]["itemStyle"]])
+            item_style = item[id]["itemStyle"]
         except:
-            item_styles.extend([None])
-        return item_styles
+            item_style = None
+        return item_style
 
     @staticmethod
-    def get_wine_body(item: Dict[str, Any], id: int, bodies: list) -> list:
+    def get_wine_body(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            bodies.extend([item[id]["itemBody"]])
+            body = item[id]["itemBody"]
         except:
-            bodies.extend([None])
-        return bodies
+            body = None
+        return body
 
     @staticmethod
-    def get_wine_taste(item: Dict[str, Any], id: int, tastes: list) -> list:
+    def get_wine_taste(item: Dict[str, Any], id: int) -> Union[str, None]:
         try:
-            tastes.extend([item[id]["itemTasteProfile"]])
+            taste = item[id]["itemTasteProfile"]
         except:
-            tastes.extend([None])
-        return tastes
+            taste = None
+        return taste
 
     @staticmethod
-    def get_wine_stock(item: Dict[str, Any], id: int, stocks_available: list) -> list:
+    def get_stock(item: Dict[str, Any], id: int) -> Union[int, None]:
         try:
-            stocks_available.extend([item[id]["stockLevel"][0]["stock"]])
+            stock = item[id]["stockLevel"][0]["stock"]
         except:
-            stocks_available.extend([None])
-        return stocks_available
+            stock = None
+        return stock
 
     @staticmethod
-    def get_categories(
-        item: Dict[str, Any],
-        id: int,
-        regions: list,
-        wine_types: list,
-        varietals: list,
-        appelations: list,
-        styles: list,
-        countries: list,
-    ) -> list:
+    def get_categories_dict(item: Dict[str, Any], id: int) -> dict:
         """
-        Grabs all categories of each item and matches it with a given required categories: region, product_type, varietal_type, appelation, style.
-        Returns extended lists for all categories with either grabbed value or None entry.
+        Loops through the list of dictionaries of categories for each item.
+        Grabs types and names of each feature and returns a dictionary.
         """
+        types, names = ([] for _ in range(2))
+
         try:
             item_categories = item[id]["categories"]
+            for feature in range(len(item_categories)):
+                types.extend([item_categories[feature]["type"]])
+                names.extend([item_categories[feature]["name"]])
 
-            categories = [
-                "REGION",
-                "PRODUCT_TYPE",
-                "VARIETAL_TYPE",
-                "APPELLATION",
-                "STYLE",
-            ]
-            lists_of_features = [regions, wine_types, varietals, appelations, styles]
+                if item_categories[feature]["type"] == "REGION":
+                    extracted_country = [
+                        item_categories[feature]["storefrontUrl"].split("/")[2].title()
+                    ]
+                    types.extend(["COUNTRY"])
+                    names.extend(extracted_country) if len(
+                        extracted_country
+                    ) != 0 and extracted_country != ["c"] else names.extend([None])
 
-            item_types, item_type_names, item_country = ([] for i in range(3))
-
-            for item in range(len(item_categories)):
-
-                item_types.extend([item_categories[item]["type"]])
-                item_type_names.extend([item_categories[item]["name"]])
-
-                if item_categories[item]["type"] == "REGION":
-                    extracted_country = item_categories[item]["storefrontUrl"].split(
-                        "/"
-                    )[2]
-                    item_country.extend([extracted_country])
-
-            countries.extend(item_country) if len(
-                item_country
-            ) != 0 and item_country != ["c"] else countries.extend([None])
-
-            wine_features_dict = {k: v for k, v in zip(item_types, item_type_names)}
-
-            for i in range(len(categories)):
-                feature = wine_features_dict.get(categories[i])
-                if feature is not None:
-                    lists_of_features[i].extend([feature])
-                else:
-                    lists_of_features[i].extend([None])
+            categories_dict = {key: value for key, value in zip(types, names)}
         except:
-            regions.extend([None])
-            wine_types.extend([None])
-            varietals.extend([None])
-            appelations.extend([None])
-            styles.extend([None])
-            countries.extend([None])
+            categories_dict = {}
+        return categories_dict
 
-        return regions, wine_types, varietals, appelations, styles, countries
+    def get_region(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            region = self.get_categories_dict(item, id)["REGION"]
+        except:
+            region = None
+        return region
+
+    def get_country(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            country = self.get_categories_dict(item, id)["COUNTRY"]
+        except:
+            country = None
+        return country
+
+    def get_wine_type(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            wine_type = self.get_categories_dict(item, id)["PRODUCT_TYPE"]
+        except:
+            wine_type = None
+        return wine_type
+
+    def get_varietal(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            varietal = self.get_categories_dict(item, id)["VARIETAL_TYPE"]
+        except:
+            varietal = None
+        return varietal
+
+    def get_varietal_style(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            varietal_style = self.get_categories_dict(item, id)["STYLE"]
+        except:
+            varietal_style = None
+        return varietal_style
+
+    def get_appelation(self, item: Dict[str, Any], id: int) -> Union[str, None]:
+        try:
+            appelation = self.get_categories_dict(item, id)["APPELLATION"]
+        except:
+            appelation = None
+        return appelation
+
+    def get_one_item_data(self, item: Dict[str, Any], id: int) -> dict:
+
+        item_data_dict = {
+            "title": self.get_title(item, id),
+            "year": self.get_production_year(item, id),
+            "price": self.get_price(item, id),
+            "customer_rating": self.get_star_average(item, id),
+            "reviews": self.get_review_count(item, id),
+            "score": self.get_rating_score(item, id),
+            "winery_direct": self.is_winery_direct(item, id),
+            "stock": self.get_stock(item, id),
+            "brand": self.get_brand(item, id),
+            "country/state": self.get_country(item, id),
+            "region": self.get_region(item, id),
+            "appelation": self.get_appelation(item, id),
+            "wine_type": self.get_wine_type(item, id),
+            "varietal": self.get_varietal(item, id),
+            "varietal_style": self.get_varietal_style(item, id),
+            "style": self.get_wine_style(item, id),
+            "taste": self.get_wine_taste(item, id),
+            "body": self.get_wine_body(item, id),
+            "description": self.get_description(item, id),
+            "img": self.get_img_link(item, id),
+            "link": self.get_item_link(item, id),
+        }
+        return item_data_dict
 
     def scrape_items(self) -> pd.DataFrame:
         """
-
-        Main method of the class. Scrapes items and collects them in form of arrays, then transforms it to pandas DataFrame.
-
-        Returns:
-            pd.DataFrame: tabular data with all scraped listings and its features.
+        Scrapes products for each page and each given wine type and returns a dataframe.
         """
-
-        (
-            titles,
-            rating_scores,
-            prices,
-            years,
-            img_links,
-            links,
-            winery_directs,
-            descriptions,
-            brands,
-            countries,
-            regions,
-            appelations,
-            wine_types,
-            varietals,
-            styles,
-            tastes,
-            bodies,
-            item_styles,
-            stars_average,
-            reviews_count,
-            stocks_available,
-        ) = ([] for _ in range(21))
-
+        data = []
         item_types = self.item_types
 
         for wine_type in item_types:
-            
+
             for page in range(1, (self.number_of_pages + 1)):
                 item = self.get_products(page, wine_type)
-                
+
                 for id in range(self.items_per_page):
-                    self.get_title(item, id, titles)
-                    self.get_production_year(item, id, years)
-                    self.get_price(item, id, prices)
-                    self.get_star_average(item, id, stars_average)
-                    self.get_review_count(item, id, reviews_count)
-                    self.get_rating_score(item, id, rating_scores)
-                    self.is_winery_direct(item, id, winery_directs)
-                    self.get_wine_stock(item, id, stocks_available)
-                    self.get_brand(item, id, brands)
-                    self.get_wine_style(item, id, item_styles)
-                    self.get_wine_taste(item, id, tastes)
-                    self.get_wine_body(item, id, bodies)
-                    self.get_description(item, id, descriptions)
-                    self.get_img_link(item, id, img_links)
-                    self.get_item_link(item, id, links)
-                    self.get_categories(
-                        item,
-                        id,
-                        regions,
-                        wine_types,
-                        varietals,
-                        appelations,
-                        styles,
-                        countries,
-                    )
+                    data.append(self.get_one_item_data(item, id))
 
-                time.sleep(np.random.uniform(2, 7))
+            time.sleep(np.random.uniform(2, 7))
 
-        dataframe = pd.DataFrame(
-            {
-                "title": titles,
-                "year": years,
-                "price": prices,
-                "c_rating": stars_average,
-                "reviews": reviews_count,
-                "score": rating_scores,
-                "winery_direct": winery_directs,
-                "stock": stocks_available,
-                "brand": brands,
-                "country/state": countries,
-                "region": regions,
-                "appelation": appelations,
-                "wine_type": wine_types,
-                "varietal": varietals,
-                "varietal_style": styles,
-                "style": item_styles,
-                "taste": tastes,
-                "body": bodies,
-                "description": descriptions,
-                "img": img_links,
-                "link": links,
-            }
-        )
+        dataframe = pd.DataFrame(data=data)
 
         return dataframe.iloc[: self.items_to_return]
 
