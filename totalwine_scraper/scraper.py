@@ -118,6 +118,8 @@ class Scraper:
         """
         try:
             products = self.get_json(page, wine_type)["products"]
+            
+            # Check if it has 200 products
             if len(products) == 200:
                 return products
         except:
