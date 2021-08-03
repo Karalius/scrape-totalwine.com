@@ -319,7 +319,6 @@ class Scraper:
         return appelation
 
     def get_one_item_data(self, item: Dict[str, Any], id: int) -> dict:
-
         item_data_dict = {
             "title": self.get_title(item, id),
             "year": self.get_production_year(item, id),
@@ -363,7 +362,6 @@ class Scraper:
             time.sleep(np.random.uniform(2, 7))
 
         dataframe = pd.DataFrame(data=data)
-
         return dataframe.iloc[: self.items_to_return]
 
     @staticmethod
