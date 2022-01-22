@@ -53,6 +53,9 @@ output = {
     }
 ```
 
+## API
+I have build an API which is available in this repository: [Karalius/wine-rating-api](https://github.com/Karalius/wine-rating-api)
+
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
